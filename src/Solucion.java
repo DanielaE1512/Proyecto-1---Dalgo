@@ -16,13 +16,16 @@ public class Solucion {
 
         int filas = M.length;
         int columnas = M[0].length;
+
         int [][] Indiana = new int [filas][columnas];
         Indiana[0][0] = 0;
+
         int [][] Marion = new int [filas][columnas];
         Marion[0][columnas -1]= 0;
+
         int [][] Sallah = new int [filas][columnas];
+        
         int mitadC = (int) (Math.ceil(Indiana[0].length/2));
-        Sallah[filas-1][mitadC]= 0;
         int mitadF = (int) (Math.ceil(Indiana.length/2));
 
         for (int i = 0; i <= (Math.ceil(filas/2)); i++) {
@@ -255,8 +258,21 @@ public class Solucion {
 
                     else { maximoL = Indiana[mitadF][i] + Marion[mitadF][j] + Sallah[mitadF][k];}
 
-                    if (i == k || j == k){
-                        maximoL -= M[mitadF][k];
+                    
+                    
+                    if (i == k ){
+                        if (Indiana[mitadF][i] > Marion[mitadF][j] ){
+                            maximoL -= M[mitadF][k];}
+                    }
+
+                    if (j == k ){
+                        if (Indiana[mitadF][i] < Marion[mitadF][j] ){
+                            maximoL -= M[mitadF][k];}
+                    }
+
+                    if (j == k && k == i){
+                       
+                            maximoL -= M[mitadF][k];
                     }
                     
 
@@ -268,8 +284,6 @@ public class Solucion {
                 }
             }
 
-
-            
 
         
         }
