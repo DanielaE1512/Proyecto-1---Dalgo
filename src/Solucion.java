@@ -3,10 +3,13 @@ public class Solucion {
     public static void main(String[] args) throws Exception {
         int[][] matriz = {
             {0, 9, 1, 10, 0} ,
-            {-1, -1, 5, -1, 5},
-            {1, 5, 1, 5, 7},
+            {0, 9, 1, 10, 20} ,
+            {0, -1, 5, 10, 50},
+            {0, 5, 1, 5, 20},
             {5, 5, 5, 15, 2},
-            {55, 3, 0, 4, 1}
+            {55, 3, 3, 4, 1},
+            {0, 9, 0, 10, 0} 
+
         };
 
         exploración(matriz);
@@ -37,7 +40,7 @@ public class Solucion {
                     Indiana[i][j] = Integer.MIN_VALUE;;
                 }
 
-                if (j < filas-i-1 ){
+                if (j < columnas-i-1 ){
                     Marion[i][j] = Integer.MIN_VALUE;;
                 }
 
@@ -90,7 +93,7 @@ public class Solucion {
                 
                 //Maximo Marion
                     //Extremos Marion
-                  if ((filas-1) - i<= j){
+                  if ((columnas -1) - i<= j){
                     if (j== 0 && Indiana[i-1][j] == Integer.MIN_VALUE && Indiana[i-1][j+1] == Integer.MIN_VALUE){
                         if (Math.max(Marion[i-1][j],Marion[i-1][j+1] )  == Integer.MIN_VALUE){
                             Marion[i][j] =Integer.MIN_VALUE;
