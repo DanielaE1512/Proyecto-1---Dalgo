@@ -3,7 +3,7 @@ public class Punto {
     public static void main(String[] args) throws Exception {
         int[][] matriz = {
             {0, 9, 1, 10, 0} ,
-            {-1, -1, 5, -1, 5},
+            {-1, 5, 5, 25, 5},
             {1, 5, 1, 5, 7},
             {5, 5, 5, 15, 2},
             {55, 3, 0, 4, 1}
@@ -163,24 +163,24 @@ public class Punto {
                         m = 0;
                     }
 
-                    if (M[mitadF][SallahCol] == -1){
+                    if (M[mitadF][SallahCol] == -1 || Sallah[mitadF][SallahCol] == Integer.MIN_VALUE){
                         s = 0;
                     }
 
                 if ( dp[mitadF ][IndianaCol][MarionCol] != Integer.MIN_VALUE){
                     if (IndianaCol == MarionCol && MarionCol == SallahCol) {
-                        dp[mitadF ][IndianaCol][MarionCol] = s;}
+                        dp[mitadF ][IndianaCol][MarionCol] = Math.max(Math.max(s,i),m);}
                     
                     else if (IndianaCol == MarionCol){
                         tesoros= s + Math.max(m,i);
                     }
 
                     else if (IndianaCol == SallahCol){
-                        tesoros = s + m;
+                        tesoros = Math.max(s,i) + m;
                     }
 
                     else if (SallahCol == MarionCol){
-                        tesoros = s + i;
+                        tesoros = Math.max(s, m) + i;
                     }
                     
                     else { tesoros= s + i + m;}
