@@ -145,11 +145,13 @@ public class Punto {
             }}}
 
         // Inicializar la fila de la mitad(base de la solución)
+        int maxSallah = 0;
         for (int IndianaCol = 0; IndianaCol <columnas; IndianaCol++) {
             for (int MarionCol = 0; MarionCol < columnas; MarionCol++) {
                 int maxTesoros = 0;
                 for (int SallahCol = 0 ; SallahCol < columnas; SallahCol++){
                     int tesoros =0;
+                   
 
                     int i = M[mitadF][IndianaCol];
                     int m = M[mitadF][MarionCol];
@@ -189,6 +191,8 @@ public class Punto {
                 if (tesoros > maxTesoros){
                     maxTesoros = tesoros;
                 }
+
+                maxSallah= Math.max(maxSallah,Sallah[mitadF][SallahCol]);
             }
 
                 dp[mitadF ][IndianaCol][MarionCol] = maxTesoros;
@@ -253,6 +257,8 @@ for (int i = mitadF - 1; i >= 0; i--) {
                             boolean indianaBlocked = In[i+1][newIndianaCol];
                             boolean marionBlocked = Ma[i+1][newMarionCol];
 
+                            if (!indianaBlocked && !marionBlocked){break;}
+
                             // Condiciones individuales para Indiana y Marion
                             if (indianaBlocked && marionBlocked) {
                                 // Ambos pueden recoger tesoros
@@ -290,7 +296,9 @@ for (int i = mitadF - 1; i >= 0; i--) {
     }
 }
 
-    System.out.println(dp[0][0][4]);
+    if (maxSallah<= dp[0][0][4]){
+         System.out.println(dp[0][0][4]);}
+    else {System.out.println(maxSallah); }
 
 
 
