@@ -3,9 +3,9 @@ public class Punto {
     public static void main(String[] args) throws Exception {
         int[][] matriz = {
             {0, 9, 1, 10, 0} ,
-            {-1, 5, 5, 25, 5},
-            {1, 5, 1, 5, 7},
-            {5, 5, 5, 15, 2},
+            {-1, 5, 5, 1, -1},
+            {-1, -1, -1, -1, -1},
+            {5, 5, 5, 5, 2},
             {55, 3, 0, 4, 1}
 
         };
@@ -91,11 +91,17 @@ public class Punto {
         for (int i = 0; i <= (Math.ceil(filas/2)); i++) {
             for (int IndianaCol = 0; IndianaCol < columnas; IndianaCol++) {
                 for (int MarionCol = 0; MarionCol < columnas; MarionCol++) {
-                    
+                                                                                                                                                                                            
+                    if(M[i][MarionCol] == -1 && i ==2){ dp[i][IndianaCol][MarionCol]= Integer.MIN_VALUE;}
+                   
+                    //Marion
                     if(M[i][MarionCol] != -1){
+
+                        
                         
                         if (MarionCol >= columnas-i-1){
                             Ma[i][MarionCol]= true;
+
 
                             
                         }
@@ -142,15 +148,17 @@ public class Punto {
                     {
                         dp[i][IndianaCol][MarionCol] = Integer.MIN_VALUE;
                     }
+
+
             }}}
 
         // Inicializar la fila de la mitad(base de la solución)
-        int maxSallah = 0;
+        int maxSallah = Integer.MIN_VALUE;
         for (int IndianaCol = 0; IndianaCol <columnas; IndianaCol++) {
             for (int MarionCol = 0; MarionCol < columnas; MarionCol++) {
-                int maxTesoros = 0;
+                int maxTesoros = Integer.MIN_VALUE;
                 for (int SallahCol = 0 ; SallahCol < columnas; SallahCol++){
-                    int tesoros =0;
+                    int tesoros =Integer.MIN_VALUE;
                    
 
                     int i = M[mitadF][IndianaCol];
@@ -170,8 +178,9 @@ public class Punto {
                     }
 
                 if ( dp[mitadF ][IndianaCol][MarionCol] != Integer.MIN_VALUE){
+                    
                     if (IndianaCol == MarionCol && MarionCol == SallahCol) {
-                        dp[mitadF ][IndianaCol][MarionCol] = Math.max(Math.max(s,i),m);}
+                        tesoros = Math.max(Math.max(s,i),m);}
                     
                     else if (IndianaCol == MarionCol){
                         tesoros= s + Math.max(m,i);
@@ -296,9 +305,11 @@ for (int i = mitadF - 1; i >= 0; i--) {
     }
 }
 
-    if (maxSallah<= dp[0][0][4]){
-         System.out.println(dp[0][0][4]);}
-    else {System.out.println(maxSallah); }
+    if (0 >= dp[0][0][4]){
+         System.out.println("No fu posible llegar hasta la mitad");}
+    else if (maxSallah <= dp[0][0][4]){
+        System.out.println("La cantidad maxíma de tesoros es:" + dp[0][0][4]);}
+    else {System.out.println("La cantidad maxíma de tesoros es:" + maxSallah); }
 
 
 
