@@ -3,9 +3,9 @@ public class Punto {
     public static void main(String[] args) throws Exception {
         int[][] matriz = {
             {0, 9, 1, 10, 0} ,
-            {-1, 5, 5, 1, -1},
-            {-1, -1, -1, -1, -1},
-            {5, 5, 5, 5, 2},
+            {-1, -1, 5, -1, 5},
+            {1, 5, 1, 5, 7},
+            {5, 5, 5, 15, 2},
             {55, 3, 0, 4, 1}
 
         };
@@ -266,7 +266,7 @@ for (int i = mitadF - 1; i >= 0; i--) {
                             boolean indianaBlocked = In[i+1][newIndianaCol];
                             boolean marionBlocked = Ma[i+1][newMarionCol];
 
-                            if (!indianaBlocked && !marionBlocked){break;}
+                            //if (indianaBlocked && marionBlocked){break;}
 
                             // Condiciones individuales para Indiana y Marion
                             if (indianaBlocked && marionBlocked) {
@@ -306,7 +306,7 @@ for (int i = mitadF - 1; i >= 0; i--) {
 }
 
     if (0 >= dp[0][0][4]){
-         System.out.println("No fu posible llegar hasta la mitad");}
+         System.out.println("No fue posible llegar hasta la mitad");}
     else if (maxSallah <= dp[0][0][4]){
         System.out.println("La cantidad maxíma de tesoros es:" + dp[0][0][4]);}
     else {System.out.println("La cantidad maxíma de tesoros es:" + maxSallah); }
